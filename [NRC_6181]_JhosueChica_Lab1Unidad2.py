@@ -37,8 +37,8 @@ def Menu():
                 print("|| 2.- CREAR CUENTA - ASPIRANTE             ||")
                 print("|| 3.- VOLVER ATRAS                         ||")
                 print("==============================================")
-                opcion=int(input("Bienvenido, ¿Qué desea realizar hoy?: "))
-                if(opcion == 1):
+                opcionAsp=int(input("Bienvenido, ¿Qué desea realizar hoy?: "))
+                if(opcionAsp == 1):
                     '''Como primera opcion se ingresan los datos de aspirante y se
                     llama al metodo de iniciar sesion, para despues continuar con el menu'''
                     # INGRESAR SESION ASPIRANTE
@@ -51,7 +51,7 @@ def Menu():
                         else:
                             print("Usuario o clave registrado incorrectamente")
                     
-                elif(opcion == 2):
+                elif(opcionAsp == 2):
                     '''Como segunda opcion se registra una cuenta de Aspirante en la aplicacion'''
                     #CREAR CUENTA ASPIRANTE
                     nombreAsp=str(input("Ingrese su nombre completo: "))
@@ -80,9 +80,9 @@ def Menu():
                     print(aspirante1.crearCuentaAspirante())
                     print(aspirante1.registro_tiempo("Regitro de cuenta de Aspirante"))
                     
-                elif(opcion == 3):
-                    '''Como tercera opcion se ejecuta un break y se cierra el programa'''
-                    print("Gracias por visitarnos :)")
+                elif(opcionAsp == 3):
+                    '''Como tercera opcion se ejecuta un break y vuelve al menu principal'''
+                    print("Volviendo atras...")
                     break
                 else:
                     print("Opcion incorrecta, pruebe de  nuevo.")
@@ -96,8 +96,8 @@ def Menu():
                 print("|| 2.- CREAR CUENTA - EMPRESA               ||")
                 print("|| 3.- VOLVER ATRAS                         ||")
                 print("==============================================")
-                opcion=int(input("Bienvenido, ¿Qué desea realizar hoy?: "))
-                if(opcion == 1):
+                opcionEmp=int(input("Bienvenido, ¿Qué desea realizar hoy?: "))
+                if(opcionEmp == 1):
                     '''Como primera opcion se ingresan los datos de empresa y se
                     llama al metodo de iniciar sesion, para despues continuar con el menu Empresa'''
                     # INGRESAR SESION EMPRESA
@@ -110,7 +110,7 @@ def Menu():
                         else:
                             print("Usuario o clave registrado incorrectamente")
 
-                elif(opcion == 2):
+                elif(opcionEmp == 2):
                     '''Como segunda opcion se registra una cuenta de Empresa en la aplicacion'''
                     # CREAR CUENTA EMPRESA
                     nombreEmp=str(input("Ingrese su nombre completo: "))
@@ -133,7 +133,7 @@ def Menu():
                     print(empresa1.crearCuentaEmpresa())
                     print(empresa1.registro_tiempo("Regitro de cuenta de Empresa"))
 
-                elif(opcion == 3):
+                elif(opcionEmp == 3):
                     '''Como tercera opcion se ejecuta un break y se cierra el programa'''
                     print("Gracias por visitarnos :)")
                     break
@@ -183,6 +183,21 @@ class Usuario():
     def __init__(self, nombre, telefono, provincia, direccion, email):
         ''' 
         Construye todos los atributos necesarios para el objeto Cliente.
+        ...
+        Parametros
+        ----------
+        nombre : str
+            Nombre del usuario registrado en el sistema
+        telefono : int
+            Telefono del usuario registrado en el sistema 
+        provincia : str
+            Priovincia del usuario registrado en el sistema en la cual el
+            se encuentra el aspirante o la sede de la empresa.
+        direccion : str
+            Direccion del usuario registrado en el sistema en la cual el
+            se encuentra el aspirante o la sede de la empresa.
+        email : str
+            E-mail de contacto del usuario registrado en el sistema 
         '''
         # atributo protegido
         self.nombre = nombre
@@ -224,7 +239,7 @@ class Usuario():
 class Aspirante(Usuario):
     ''' 
     Clase en donde se guardaran todos los datos que ingresa el 
-    usuario como un Aspirante y la clave de este mismo.
+    Aspirante como un usuario y la clave de este mismo.
     ...
     Atributos
     ----------
@@ -265,6 +280,25 @@ class Aspirante(Usuario):
     def __init__(self, nombre, edad, cedula, telefono, provincia, direccion, email):
         ''' 
         Construye todos los atributos necesarios para el objeto Aspirante.
+        ...
+        Parametros
+        ----------
+        nombre : str
+            Nombre del usuario registrado en el sistema
+        edad : int
+            Edad del usuario registrado en el sistema
+        cedula : int
+            Documento de Identidad del apirante registrado en el sistema
+        telefono : int
+            Telefono del usuario registrado en el sistema 
+        provincia : str
+            Priovincia del usuario registrado en el sistema en la cual el
+            se encuentra el aspirante.
+        direccion : str
+            Direccion del usuario registrado en el sistema en la cual el
+            se encuentra el aspirante o la sede de la empresa.
+        email : str
+            E-mail de contacto del usuario registrado en el sistema
         '''
         self.edad = edad
         self.cedula = cedula
@@ -320,7 +354,7 @@ class Aspirante(Usuario):
 class Empresa(Usuario):
     ''' 
     Clase en donde se guardaran todos los datos que ingresa el 
-    usuario como un Empresa y la clave de este mismo.
+    Empresa como un usuario y la clave de este mismo.
     ...
     Atributos
     ----------
@@ -359,6 +393,23 @@ class Empresa(Usuario):
     def __init__(self, nombre, RUC, telefono, provincia, direccion, email):
         ''' 
         Construye todos los atributos necesarios para el objeto Empresa.
+        ...
+        Parametros
+        ----------
+        nombre : str
+            Nombre de la Empresa registrada en el sistema
+        RUC : str
+            Registro Único de Contribuyentes de la Empresa registrada en el sistema
+        telefono : int
+            Telefono de la Empresa registrada en el sistema 
+        provincia : str
+            Priovincia de la Empresa registrada en el sistema en la cual el
+            se encuentra la sede de la empresa.
+        direccion : str
+            Direccion de la Empresa registrada en el sistema en la cual el
+            se encuentra la sede de la empresa.
+        email : str
+            E-mail de contacto de la Empresa registrada en el sistema
         '''
         self.RUC = RUC
         super().__init__(nombre, telefono, provincia, direccion, email)
@@ -410,6 +461,115 @@ class Empresa(Usuario):
         else:
             return True
 
+class MenuAspirante():
+    ''' 
+    Clase en donde se guardaran todos los datos que ingresa el 
+    Aspirante como el usuario y la clave de este mismo.
+    ...
+    Atributos
+    ----------
+    opcion : int
+        opcion registrado en el sistema
+    ...
+    Metodos
+    -------
+    __init__(self):
+        Construye todos los atributos necesarios para el objeto MenuAspirante.
+    mostrar_propuestas(self):
+        Metodo que presenta una lista de todas las propuestas de empleo realizadas por las empresas.
+    realizar_formulario(self):
+        Metodo que mostrara el formulario que se presentara a las empresas.
+    '''
+    
+    def __init__(self, opcion):
+        ''' 
+        Construye todos los atributos necesarios para el objeto MenuAspirante.
+        '''
+        self.opcion = opcion
+        
+    def mostrar_propuestas(self):
+        '''
+        Metodo que presenta una lista de todas las propuestas de empleo realizadas por las empresas.
+        ...
+        Parametros
+        ----------
+        *No tiene parametros*
+        '''
+        
+    def realizar_formulario(self):
+        '''
+        Metodo que mostrara el formulario que se presentara a las empresas.
+        ...
+        Parametros
+        ----------
+        *No tiene parametros*
+        '''
+
+class MenuEmpresa():
+    ''' 
+    Clase en donde se guardaran todos los datos que ingresa el 
+    Empresa como el usuario y la clave de este mismo.
+    ...
+    Atributos
+    ----------
+    opcion : int
+        opcion registrado en el sistema
+    ...
+    Metodos
+    -------
+    __init__(self):
+        Construye todos los atributos necesarios para el objeto MenuAspirante.
+    revisar_propuestas(self):
+        Metodo que presenta una lista de todas las propuestas de empleo realizadas por las empresas.
+    anadir_formulario(self):
+        Metodo que añadira una propuesta de trabajo a la lista de todas las propuestas.
+    modificar_formulario(self):
+        Metodo que modificara una propuesta de trabajo de la lista de todas las propuestas.
+    eliminar_formulario(self):
+        Metodo que eleminara una propuesta de trabajo de la lista de todas las propuestas.
+    '''
+    
+    def __init__(self, opcion):
+        ''' 
+        Construye todos los atributos necesarios para el objeto MenuAspirante.
+        '''
+        self.opcion = opcion
+        
+    def revisar_propuestas(self):
+        '''
+        Metodo que presenta una lista de todas las propuestas de empleo realizadas por las empresas.
+        ...
+        Parametros
+        ----------
+        *No tiene parametros*
+        '''
+        
+    def anadir_formulario(self):
+        '''
+        Metodo que añadira una propuesta de trabajo a la lista de todas las propuestas.
+        ...
+        Parametros
+        ----------
+        *No tiene parametros*
+        '''
+
+    def modificar_formulario(self):
+        '''
+        Metodo que modificara una propuesta de trabajo de la lista de todas las propuestas.
+        ...
+        Parametros
+        ----------
+        *No tiene parametros*
+        '''
+
+    def eliminar_formulario(self):
+        '''
+        Metodo que eleminara una propuesta de trabajo de la lista de todas las propuestas.
+        ...
+        Parametros
+        ----------
+        *No tiene parametros*
+        '''
 
 
 if __name__ == '__main__':
